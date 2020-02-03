@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}Editors{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+        <div class="col-sm-8 mx-auto">
+            <a class="nav-link" href="/register/editor">Add Editor</a>
+            <ul>
+            {% for editor in editors %}
+                <li>
+                    <span>Name : {{ editor.name }}</span>
+                    <span>Nationnality : {{ editor.nationality }}</span>
+                    <br>
+                    <a href="/editor/{{ editor.id }}">Show</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="/edit/editor/{{ editor.id }}">Edit</a>
+                    <a href="/delete/editor/{{ editor.id }}">Delete</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        <a href="/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Retour</a>
+    </div>
+    
+{% endblock %}
